@@ -19,6 +19,11 @@
   
 <br>  
   
+## :chart_with_upwards_trend: Request flow diagram  
+<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/request-flow-diagram.png" width="360">  
+    
+<br>  
+  
 ## :file_folder: Target software:  
 **This plugin officially only works with [Pocketmine-MP `API 3.x.x`](https://github.com/pmmp/PocketMine-MP/tree/stable)**
 > **If you use [**Pocketmine-MP** `API 4.x.x`](https://github.com/pmmp/PocketMine-MP/tree/master),**  
