@@ -146,8 +146,8 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
      */
     public function getProvider($option = null, bool $default = true) : ?IPaymentProvider{
         $providerName = null;
-        if($option instanceof Plugin && isset($this->linkEnum[$option->getName()])){
-            $providerName = $this->linkEnum[$option->getName()]->getDefault();
+        if($option instanceof Plugin && $this->linkEnum->has($option->getName())){
+            $providerName = $this->linkEnum->get($option->getName())->getDefault();
         }elseif(is_string($option)){
             if($this->linkEnum->has($option)){
                 $providerName = $this->linkEnum->get($option)->getDefault();
