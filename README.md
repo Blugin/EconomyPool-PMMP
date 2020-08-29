@@ -1,4 +1,4 @@
-<p align="center"> <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/icon.png" width="360"> </p>  
+<p align="center"> <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/icon.png" width="50%"> </p>  
   
 # PaymentPool  
 ### The bridge that connects all payments plugins!
@@ -12,16 +12,40 @@
 [![license](https://img.shields.io/github/license/Blugin/PaymentPool.svg)](https://github.com/Blugin/PaymentPool/blob/master/LICENSE)
 [![hits](https://views.whatilearened.today/views/github/Blugin/PaymentPool.svg)](http://hits.dwyl.com/Blugin/PaymentPool)
   
-✔️ Integrate and manage all payment method plugins!  
-✔️ You can which payment method to use for each plugin!  
-✔️ If you request a payment method that is not linked, I will add it right!  
-✔️ Developers no longer have to worry about which payment method!  
+✔️ All payment method plugins are integrated and managed!  
+✔️ You can set which payment method to connect to each plugin!  
   
 <br>  
   
-## :chart_with_upwards_trend: Request flow diagram  
-<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/request-flow-diagram.png" width="360">  
-    
+## :book: What is the feature?
+This plugin is a library plugin that integrates and manages several payment method plugins into one  
+  
+First of all, `payment method` in this article is a collective name for plugins that can be used for payment  
+> Economy plugin (EconomyAPI, etc.)  
+> Cache plugin (Cash, SCash, etc.)  
+> Point plug-in (PointAPI, etc.)  
+  
+<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/request-flow-diagram.png" width="100%">
+Payment method is connected to PaymentPool and managed, and it works by requesting PaymentPool from other plugins  
+User can set which payment method is connected for each plugin  
+  
+----------  
+  
+#### User Benefits  
+You don't have to worry about which payment plugin is link with the plugin you want to use!  
+The same is true even if you use multiple payment methods such as economy, cash, and points on the server at once  
+Because you can set which payment method to connect to each plugin with a command :)    
+  
+----------  
+  
+#### Developers Benefits  
+Now you don't have to worry about which payment plugin to connect your plugin to!  
+Just use with PaymentPool, and the user will choose and use the payment method :)  
+It is also possible to link multiple payment methods at in once.  
+  
+In addition, if you use this plugin, you can escape from GPL licenses such as `EconomyAPI` :)  
+
+       
 <br>  
   
 ## :file_folder: Target software:  
@@ -35,6 +59,11 @@
 1) Download `.phar` from [poggit](https://poggit.pmmp.io/ci/Blugin/PaymentPool/PaymentPool)  
 2) Move dowloaded `.phar` file to your server's **/plugins/** folder  
 3) Restart the server (or execute `/reload` command)  
+  
+<br>  
+  
+## :books: API Usage
+- [:book: How to use it?](https://github.com/Blugin/PaymentPool/blob/master/doc/eng/HowToUse.md)
   
 <br>  
   
