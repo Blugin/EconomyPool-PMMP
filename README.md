@@ -34,7 +34,9 @@ User can set which payment method is connected for each plugin
 #### User Benefits  
 You don't have to worry about which payment plugin is link with the plugin you want to use!  
 The same is true even if you use multiple payment methods such as economy, cash, and points on the server at once  
-Because you can set which payment method to connect to each plugin with a command :)    
+Because you can set which payment method to connect to each plugin with a command :)  
+
+For more detailed explanation, see [[**:book: How to use? - for user  **]](https://github.com/Blugin/PaymentPool/blob/master/doc/kor/HowTo-use.md)  
   
 ----------  
   
