@@ -73,6 +73,10 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
 
         $this->loadLanguage();
         $this->getBaseCommand("payment");
+
+        //Load provider scripts
+        $this->getServer()->getPluginManager()->loadPlugins($this->getPrividerFolder());
+        $this->getServer()->getPluginManager()->loadPlugins($this->getDataFolder() . "tests/");
     }
 
     public function onEnable() : void{
@@ -105,9 +109,6 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
                 throw new \RuntimeException("[data.json] Unable to parse info data");
             }
         }
-
-        //Load provider scripts
-        $this->getServer()->getPluginManager()->loadPlugins($this->getPrividerFolder());
     }
 
     public function onDisable() : void{
