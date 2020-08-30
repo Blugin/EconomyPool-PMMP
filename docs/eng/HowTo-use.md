@@ -16,13 +16,15 @@
 - You need to get the plugin directly from here and apply it  
 > However, we know this is a cumbersome way, so we support the automatic install feature!  
   
-  
+<br>  
 ----------  
-  
+<br>  
   
 ## How to use commands? `/payment <Set | Payments | Links | Install>`  
 > All commands support Minecraft's autocomplete feature  
-<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/in-game-command-screenshot.png" width="100%">  
+<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/in-game-command-screenshot.png" width="100%">
+----------  
+<br>    
   
 ### /payment Set <Link: `PaymentLink`> <Payment: `Payment`>  
 - This command sets which payment method to connect to each link (plug-in)    
@@ -38,14 +40,20 @@
 /payment set @ economyapi  
 ````  
 <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/command-set-demo.png" width="100%">
+----------  
+<br>  
   
 #### /payment Payments [Page: `int`]  
 - This command displays the list of registered payment methods  
 <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/command-payments-demo.png" width="100%">  
+----------  
+<br>  
   
 #### /payment Links [Page: `int`]  
 - This command displays the list of registered links (In general, the plugin)  
 <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/command-links-demo.png" width="100%">  
+----------  
+<br>  
   
 #### /payment Install  
 - This command is automatically installed when the payment method plug-in on the server is registered  

@@ -14,9 +14,9 @@
 #### [<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/icon.png" width="20px">**PaymentPool**](https://github.com/Blugin/PaymentPool)  
 - 메인 API플러그인인 `PaymentPool` 플러그인입니다  
   
-  
+<br>  
 ----------  
-  
+<br>  
   
 #### :zap: 결제수단을 등록하는 방법  
 > Payment를 등록하기 위해선 `IPaymentProvider`를 구현한 객체가 필요합니다  
@@ -68,6 +68,7 @@
 > }, ["onebone:economyapi", "economys"]);  
 > ```  
   
+----------  
 <br>  
   
 #### :sparkles: `PaymentTrait`를 사용해 빠르게 사용하기  
@@ -103,6 +104,7 @@
 > }
 > ```  
   
+----------  
 <br>  
   
 #### :sparkles: `PluginBase`가 아닌 클래스에서 `PaymentTrait`를 사용하기  
@@ -152,6 +154,7 @@
 > }
 > ```  
   
+----------  
 <br>  
   
 #### :zap: `PaymentPool`에 직접 접근하여 사용하기
