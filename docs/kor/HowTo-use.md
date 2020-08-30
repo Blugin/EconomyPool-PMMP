@@ -1,5 +1,5 @@
 <p align="right">  
-  <a href="https://github.com/Blugin/PaymentPool/blob/master/doc/eng/HowTo-use.md">  
+  <a href="https://github.com/Blugin/PaymentPool/blob/master/docs/eng/HowTo-use.md">  
     <img src="https://img.shields.io/static/v1?label=read%20in&message=English&color=success">  
   </a>  
 </p>  

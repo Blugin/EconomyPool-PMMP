@@ -1,4 +1,4 @@
-<p align="center"> <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/docs/README/icon.png" width="50%"> </p>  
+<p align="center"> <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/icon.png" width="50%"> </p>  
   
 # PaymentPool  
 ### 모든 결제수단을 관리하는 플러그인
@@ -36,7 +36,7 @@
 서버에서 경제,캐쉬,포인트 등의 여러 결제수단을 한번에 사용해도 마찬가지입니다  
 각 플러그인에 어떤 결제수단을 연결할 지 명령어로 설정이 가능하기 때문이죠 :)  
 
-더 자세한 설명은 [[**:book: 어떻게 사용하나요? - 사용자 편**]](https://github.com/Blugin/PaymentPool/blob/master/doc/kor/HowTo-use.md) 을 참고하세요   
+더 자세한 설명은 [[**:book: 어떻게 사용하나요? - 사용자 편**]](https://github.com/Blugin/PaymentPool/blob/master/docs/kor/HowTo-use.md) 을 참고하세요   
   
 ----------  
   
@@ -47,7 +47,7 @@
   
 추가로 이 플러그인을 사용하면 `EconomyAPI` 등의 GPL라이선스에서도 벗어날 수 있습니다 :) 
 
-더 자세한 설명은 [[**:book: 어떻게 사용하나요? - 개발자편 편**]](https://github.com/Blugin/PaymentPool/blob/master/doc/kor/HowTo-dev.md) 을 참고하세요
+더 자세한 설명은 [[**:book: 어떻게 사용하나요? - 개발자편 편**]](https://github.com/Blugin/PaymentPool/blob/master/docs/kor/HowTo-dev.md) 을 참고하세요
 
        
 <br>  
