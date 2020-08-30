@@ -76,7 +76,6 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
 
         //Load provider scripts
         $this->getServer()->getPluginManager()->loadPlugins($this->getPrividerFolder());
-        $this->getServer()->getPluginManager()->loadPlugins($this->getDataFolder() . "tests/");
     }
 
     public function onEnable() : void{
@@ -138,12 +137,7 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
         return $this->providerEnum->getAll();
     }
 
-    /**
-     * @param mixed $name If it was null, return default provider
-     * @param bool  $default = true
-     *
-     * @return IPaymentProvider|null
-     */
+    /** @param string|object|null $value string or null or object (has getName()). If it was null, return default provider */
     public function getProvider($name = null, bool $default = true) : ?IPaymentProvider{
         $providerName = null;
         $name = $this->getNameFrom($name, "getProvider");
@@ -157,17 +151,14 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
 
         $providerName = strtolower($providerName ?? "");
         $provider = $this->providerEnum->get($providerName) ?? $this->providerSaveNames[$providerName] ?? null;
-        if($provider !== null && $default){
+        if($provider === null && $default){
             $provider = $this->providerEnum->get(strtolower($this->getDefault())) ?? null;
         }
 
         return $provider;
     }
 
-    /**
-     * @param IPaymentProvider $provider
-     * @param string[]         $saveNames
-     */
+    /** @param string[] $saveNames */
     public function registerProvider(IPaymentProvider $provider, array $saveNames = []) : void{
         if($this->getDefault() === null){
             $this->setDefault($provider->getName());
@@ -188,12 +179,12 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
         return $this->linkEnum->getAll();
     }
 
-    /** @param mixed $name */
+    /** @param string|object $value string or null or object (has getName()) */
     public function getLink($name) : ?PaymentLink{
         return $this->linkEnum->get($this->getNameFrom($name, "getLink")) ?? null;
     }
 
-    /** @param mixed $name */
+    /** @param string|object $value string or null or object (has getName()) */
     public function registerLink($name) : void{
         $name = $this->getNameFrom($name, "getLink");
         if($name === null)
@@ -202,7 +193,6 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
         $this->linkEnum->set($name, new PaymentLink($name, $this->getDefault()));
     }
 
-    /** @return string|null */
     public function getDefault() : ?string{
         $defaultLink = $this->getLink(self::DEFAULT_NAME);
         $default = $defaultLink === null ? null : $defaultLink->getDefault();
@@ -210,7 +200,6 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
         return $default ?? (empty($providers) ? null : array_key_first($providers));
     }
 
-    /** @param string|null $default */
     public function setDefault(?string $default) : void{
         $this->getLink(self::DEFAULT_NAME)->setDefault($default);
     }
