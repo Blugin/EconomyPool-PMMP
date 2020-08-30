@@ -16,14 +16,17 @@
 - 여기에서 직접 해당되는 플러그인을 받아 적용해야합니다  
 > 하지만 이 방식이 귀찮은 방식이라는 것을 알기 때문에 자동 설치 기능을 지원합니다!  
   
-  
+<br>  
 ----------  
+<br>  
   
-  
-## 명령어 사용 방법 `/payment <Set | Payments | Links | Install>`  
+### 명령어 사용 방법
+##### `/payment <Set | Payments | Links | Install>`  
 > 모든 명령어는 마인크래프트의 자동완성 기능을 지원합니다  
 <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/in-game-command-screenshot.png" width="100%">
-  
+----------  
+<br>  
+ 
 ### /payment Set <링크 이름: `Link`> <결제수단 이름: `Payment`>  
 - 각 링크(플러그인)에 어떤 결제 수단을 연결할지 설정하는 명령어입니다  
 > `PayShop`이라는 상점 플러그인을 `economyapi`로 연결하고 싶을 경우 :  
@@ -38,14 +41,20 @@
 /payment set @ economyapi  
 ````  
 <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/command-set-demo.png" width="100%">
+----------  
+<br>  
   
 #### /payment Payments [페이지: `int`]  
 - 등록되어있는 결제수단 목록을 표시하는 명령어입니다  
 <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/command-payments-demo.png" width="100%">
+----------  
+<br>  
   
 #### /payment Links [페이지: `int`]  
 - 등록되어있는 링크 목록을 표시하는 명령어입니다 (대체로 플러그인 이름)  
 <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/command-links-demo.png" width="100%">
+----------  
+<br>  
   
 #### /payment Install  
 - 서버에 있는 결제수단 플러그인이 등록되어있는 경우 자동으로 설치하는 명령어입니다  

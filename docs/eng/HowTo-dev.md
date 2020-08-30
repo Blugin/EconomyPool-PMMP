@@ -14,9 +14,9 @@
 #### [<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/icon.png" width="20px">**PaymentPool**](https://github.com/Blugin/PaymentPool)  
 - This is the main API plugin `PaymentPool` plugin  
   
-  
+<br>  
 ----------  
-  
+<br>  
   
 #### :zap: How to register a payment  
 > To register Payment, you need an object that implements `IPaymentProvider`  
@@ -68,6 +68,7 @@
 > }, ["onebone:economyapi", "economys"]);  
 > ```  
   
+----------  
 <br>  
   
 #### :sparkles: Quick use via `PaymentTrait`  
@@ -103,6 +104,7 @@
 > }
 > ```  
   
+----------  
 <br>  
   
 #### :sparkles: Using `PaymentTrait` in a class other than `PluginBase`  
@@ -152,6 +154,7 @@
 > }
 > ```  
   
+----------  
 <br>  
   
 #### :zap: Accessing and using `PaymentPool` directly  
