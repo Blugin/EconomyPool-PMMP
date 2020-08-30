@@ -49,7 +49,8 @@ class SetOverload extends NamedOverload implements ICommandHandler{
          * @var PaymentLink      $link
          * @var IPaymentProvider $payment
          */
-        [$link, $payment] = $args;
+        $link = $args["link"];
+        $payment = $args["payment"];
         $link->setDefault($payment->getName());
         $overload->sendMessage($sender, "success", [$link->getName(), $payment->getName()]);
         return true;
