@@ -37,31 +37,23 @@ class PaymentLink implements \JsonSerializable{
     /** @var string|null */
     private $default;
 
-    /**
-     * @param string      $name
-     * @param string|null $default
-     */
     public function __construct(string $name, ?string $default = null){
         $this->name = $name;
         $this->default = $default;
     }
 
-    /** @return string */
     public function getName() : string{
         return $this->name;
     }
 
-    /** @return string|null */
     public function getDefault() : ?string{
         return $this->default;
     }
 
-    /** @param string|null $default */
     public function setDefault(?string $default) : void{
         $this->default = $default;
     }
 
-    /** @return null|Plugin */
     public function getPlugin() : ?Plugin{
         return Server::getInstance()->getPluginManager()->getPlugin($this->name);
     }
