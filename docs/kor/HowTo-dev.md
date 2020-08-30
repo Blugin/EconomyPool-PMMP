@@ -4,14 +4,14 @@
   </a>  
 </p>  
   
-# :book: 어떻게 사용하나요? - 개발자편  
+## :book: 어떻게 사용하나요? - 개발자편  
   
-## 사용하기 위해 필요한 플러그인  
-### [<img src="https://ghcdn.rawgit.org/Blugin/libCommand/master/icon.png" width="20px">**libCommand**](https://github.com/Blugin/libCommand)  
+### 사용하기 위해 필요한 플러그인  
+#### [<img src="https://ghcdn.rawgit.org/Blugin/libCommand/master/icon.png" width="20px">**libCommand**](https://github.com/Blugin/libCommand)  
 - 명령어를 객체화해 관리하고, 자동 완성, 명령어 설정을 지원하는 라이브러리 플러그인입니다  
 - `/payment` 명령어를 추가하는데 사용됩니다  
   
-### [<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/icon.png" width="20px">**PaymentPool**](https://github.com/Blugin/PaymentPool)  
+#### [<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/icon.png" width="20px">**PaymentPool**](https://github.com/Blugin/PaymentPool)  
 - 메인 API플러그인인 `PaymentPool` 플러그인입니다  
   
   

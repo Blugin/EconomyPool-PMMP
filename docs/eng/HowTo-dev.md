@@ -4,14 +4,14 @@
   </a>  
 </p>  
   
-# :book: How to use? - for developer  
+## :book: How to use? - for developer  
   
-## Plugins you need to use  
-### [<img src="https://ghcdn.rawgit.org/Blugin/libCommand/master/icon.png" width="20px">**libCommand**](https://github.com/Blugin/libCommand)  
+### Plugins you need to use  
+#### [<img src="https://ghcdn.rawgit.org/Blugin/libCommand/master/icon.png" width="20px">**libCommand**](https://github.com/Blugin/libCommand)  
 - It is a library plug-in that manages commands by OOP them, and supports automatic completion and command setting  
 - Used to add `/ payment` command  
   
-### [<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/icon.png" width="20px">**PaymentPool**](https://github.com/Blugin/PaymentPool)  
+#### [<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/icon.png" width="20px">**PaymentPool**](https://github.com/Blugin/PaymentPool)  
 - This is the main API plugin `PaymentPool` plugin  
   
   
