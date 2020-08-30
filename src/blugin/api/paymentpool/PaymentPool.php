@@ -36,7 +36,6 @@ use blugin\lib\command\enum\Enum;
 use blugin\lib\command\enum\EnumFactory;
 use blugin\lib\command\translator\traits\TranslatorHolderTrait;
 use blugin\lib\command\translator\TranslatorHolder;
-use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
 
 class PaymentPool extends PluginBase implements TranslatorHolder{
@@ -139,20 +138,19 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
     }
 
     /**
-     * @param Plugin|string|null $option If it was null, return default provider
-     * @param bool               $default = true
+     * @param mixed $name If it was null, return default provider
+     * @param bool  $default = true
      *
      * @return IPaymentProvider|null
      */
-    public function getProvider($option = null, bool $default = true) : ?IPaymentProvider{
+    public function getProvider($name = null, bool $default = true) : ?IPaymentProvider{
         $providerName = null;
-        if($option instanceof Plugin && $this->linkEnum->has($option->getName())){
-            $providerName = $this->linkEnum->get($option->getName())->getDefault();
-        }elseif(is_string($option)){
-            if($this->linkEnum->has($option)){
-                $providerName = $this->linkEnum->get($option)->getDefault();
+        $name = $this->getNameFrom($name, "getProvider");
+        if(is_string($name)){
+            if($this->linkEnum->has($name)){
+                $providerName = $this->linkEnum->get($name)->getDefault();
             }else{
-                $providerName = $option;
+                $providerName = $name;
             }
         }
 
@@ -189,24 +187,16 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
         return $this->linkEnum->getAll();
     }
 
-    /**
-     * @param Plugin|string $name
-     *
-     * @return PaymentLink|null
-     */
+    /** @param mixed $name */
     public function getLink($name) : ?PaymentLink{
-        if($name instanceof Plugin){
-            $name = $name->getName();
-        }
-
-        return $this->linkEnum->get($name) ?? null;
+        return $this->linkEnum->get($this->getNameFrom($name, "getLink")) ?? null;
     }
 
-    /** @param Plugin|string $name */
+    /** @param mixed $name */
     public function registerLink($name) : void{
-        if($name instanceof Plugin){
-            $name = $name->getName();
-        }
+        $name = $this->getNameFrom($name, "getLink");
+        if($name === null)
+            throw new \RuntimeException("Argument 1 passed to Payment::getLink() must be of the type string or object with 'getName' method, " . gettype($name) . " given");
 
         $this->linkEnum->set($name, new PaymentLink($name, $this->getDefault()));
     }
@@ -222,5 +212,20 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
     /** @param string|null $default */
     public function setDefault(?string $default) : void{
         $this->getLink(self::DEFAULT_NAME)->setDefault($default);
+    }
+
+    /** @param string|object|null $value string or null or object (has getName()) */
+    private function getNameFrom($value, string $methodName) : ?string{
+        if($value === null)
+            return null;
+
+        if(is_object($value) && method_exists($value, "getName")){
+            $value = $value->getName();
+        }
+
+        if(!is_string($value))
+            throw new \RuntimeException("Argument 1 passed to Payment::$methodName() must be of the type string or null or object with 'getName' method, " . gettype($value) . " given");
+
+        return $value;
     }
 }
