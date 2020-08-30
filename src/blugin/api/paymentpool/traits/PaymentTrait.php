@@ -36,7 +36,14 @@ trait PaymentTrait{
         if(!method_exists(self::class, 'getInstance') || !(new \ReflectionMethod(self::class, 'getInstance'))->isStatic())
             throw new \RuntimeException("You must have getInstance() static method to use this trait");
 
-        return PaymentPool::on(self::getInstance());
+        $pool = PaymentPool::getInstance();
+        $name = self::getInstance();
+        if($pool->getLink($name) === null){
+            var_dump("link 없음");
+            $pool->registerLink($name);
+        }
+
+        return $pool->getProvider($name);
     }
 
     /** @return float[] player name => money */
