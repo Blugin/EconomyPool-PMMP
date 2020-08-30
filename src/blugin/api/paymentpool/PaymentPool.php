@@ -152,7 +152,7 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
 
         $providerName = strtolower($providerName ?? "");
         $provider = $this->providerEnum->get($providerName) ?? $this->providerSaveNames[$providerName] ?? null;
-        if($provider !== null && $default){
+        if($provider === null && $default){
             $provider = $this->providerEnum->get(strtolower($this->getDefault())) ?? null;
         }
 
