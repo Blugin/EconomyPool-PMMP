@@ -27,6 +27,7 @@ First of all, `payment method` in this plugin is a collective name for plugins t
   
 <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/request-flow-diagram.png" width="100%">
 Payment method is connected to PaymentPool and managed, and it works by requesting PaymentPool from other plugins  
+
 User can set which payment method is connected for each plugin  
   
 ----------  

@@ -27,6 +27,7 @@
   
 <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/request-flow-diagram.png" width="100%">
 결제수단이 PaymentPool에 연결되어 관리되고, 다른 플러그인에서 PaymentPool에게 요청하는 방식으로 작동됩니다  
+
 사용자는 각 플러그인 마다 어떤 결제수단과 연결될 지 설정할 수 있습니다  
   
 ----------  
