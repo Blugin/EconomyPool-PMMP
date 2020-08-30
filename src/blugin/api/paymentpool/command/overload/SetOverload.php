@@ -25,8 +25,10 @@ declare(strict_types=1);
 
 namespace blugin\api\paymentpool\command\overload;
 
-use blugin\api\paymentpool\command\parameter\PaymentParameter;
 use blugin\api\paymentpool\command\parameter\PaymentLinkParamater;
+use blugin\api\paymentpool\command\parameter\PaymentParameter;
+use blugin\api\paymentpool\IPaymentProvider;
+use blugin\api\paymentpool\PaymentLink;
 use blugin\lib\command\BaseCommand;
 use blugin\lib\command\handler\ICommandHandler;
 use blugin\lib\command\overload\NamedOverload;
@@ -36,16 +38,20 @@ use pocketmine\command\CommandSender;
 class SetOverload extends NamedOverload implements ICommandHandler{
     public function __construct(BaseCommand $baseCommand){
         parent::__construct($baseCommand, "set");
-        $this->addParamater(new PaymentLinkParamater("plugin"));
+        $this->addParamater(new PaymentLinkParamater("link"));
         $this->addParamater(new PaymentParameter("payment"));
         $this->setHandler($this);
     }
 
     /** @param mixed[] $args name => value */
     public function handle(CommandSender $sender, array $args, Overload $overload) : bool{
-        $default = $args["payment"]->getName();
-        $args["plugin"]->setDefault($default);
-        $overload->sendMessage($sender, "success", [$default]);
+        /**
+         * @var PaymentLink      $link
+         * @var IPaymentProvider $payment
+         */
+        [$link, $payment] = $args;
+        $link->setDefault($payment->getName());
+        $overload->sendMessage($sender, "success", [$link->getName(), $payment->getName()]);
         return true;
     }
 }
