@@ -22,6 +22,7 @@
   
 ## 명령어 사용 방법 `/payment <Set | Payments | Links | Install>`  
 > 모든 명령어는 마인크래프트의 자동완성 기능을 지원합니다  
+<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/in-game-command-screenshot.png" width="100%">
   
 ### /payment Set <링크 이름: `Link`> <결제수단 이름: `Payment`>  
 - 각 링크(플러그인)에 어떤 결제 수단을 연결할지 설정하는 명령어입니다  
@@ -36,14 +37,17 @@
 ````  
 /payment set @ economyapi  
 ````  
+<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/command-set-demo.png" width="100%">
   
 #### /payment Payments [페이지: `int`]  
 - 등록되어있는 결제수단 목록을 표시하는 명령어입니다  
+<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/command-payments-demo.png" width="100%">
   
 #### /payment Links [페이지: `int`]  
 - 등록되어있는 링크 목록을 표시하는 명령어입니다 (대체로 플러그인 이름)  
+<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/command-links-demo.png" width="100%">
   
 #### /payment Install  
 - 서버에 있는 결제수단 플러그인이 등록되어있는 경우 자동으로 설치하는 명령어입니다  
-<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/docs/README/docs/command-install-demo.png" width="100%">  
+<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/command-install-demo.png" width="100%">  
   
