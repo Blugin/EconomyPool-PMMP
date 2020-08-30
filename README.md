@@ -20,7 +20,7 @@
 ## :book: What is the feature?
 This plugin is a library plugin that integrates and manages several payment method plugins into one  
   
-First of all, `payment method` in this article is a collective name for plugins that can be used for payment  
+First of all, `payment method` in this plugin is a collective name for plugins that can be used for payment  
 > Economy plugin (EconomyAPI, etc.)  
 > Cache plugin (Cash, SCash, etc.)  
 > Point plug-in (PointAPI, etc.)  
@@ -46,6 +46,8 @@ Just use with PaymentPool, and the user will choose and use the payment method :
 It is also possible to link multiple payment methods at in once.  
   
 In addition, if you use this plugin, you can escape from GPL licenses such as `EconomyAPI` :)  
+
+For more detailed explanation, see [**[:book: How to use? - for developer]**](https://github.com/Blugin/PaymentPool/blob/master/doc/eng/HowTo-dev.md)
 
        
 <br>  
