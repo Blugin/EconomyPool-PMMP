@@ -76,7 +76,6 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
 
         //Load provider scripts
         $this->getServer()->getPluginManager()->loadPlugins($this->getPrividerFolder());
-        $this->getServer()->getPluginManager()->loadPlugins($this->getDataFolder() . "tests/");
     }
 
     public function onEnable() : void{
