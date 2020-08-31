@@ -23,27 +23,28 @@
 
 declare(strict_types=1);
 
-namespace blugin\api\paymentpool\command\overload;
+namespace blugin\api\paymentpool\lib\command\handler;
 
-use blugin\api\paymentpool\task\InstallProviderTask;
-use blugin\api\paymentpool\lib\command\BaseCommand;
-use blugin\api\paymentpool\lib\command\handler\ICommandHandler;
-use blugin\api\paymentpool\lib\command\overload\NamedOverload;
 use blugin\api\paymentpool\lib\command\overload\Overload;
 use pocketmine\command\CommandSender;
-use pocketmine\Server;
+use pocketmine\utils\Utils;
 
-class InstallOverload extends NamedOverload implements ICommandHandler{
-    public function __construct(BaseCommand $baseCommand){
-        parent::__construct($baseCommand, "install");
-        $this->setHandler($this);
+class ClosureCommandHandler implements ICommandHandler{
+    /** @var \Closure */
+    protected $closure;
+
+    public function __construct(\Closure $closure){
+        Utils::validateCallableSignature(function(CommandSender $sender, array $args, Overload $overload) : bool{
+            return true;
+        }, $closure);
+
+        $this->closure = $closure;
     }
 
-    /** @param mixed[] $args name => value */
+    /**
+     * @param mixed[] $args name => value
+     */
     public function handle(CommandSender $sender, array $args, Overload $overload) : bool{
-        Server::getInstance()->getAsyncPool()->submitTask(new InstallProviderTask());
-        $overload->sendMessage($sender, "success");
-
-        return true;
+        ($this->closure)($sender, $args, $overload);
     }
 }

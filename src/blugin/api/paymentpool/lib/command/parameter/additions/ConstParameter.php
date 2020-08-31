@@ -23,28 +23,19 @@
 
 declare(strict_types=1);
 
-namespace blugin\api\paymentpool\command\parameter;
+namespace blugin\api\paymentpool\lib\command\parameter\additions;
 
-use blugin\api\paymentpool\PaymentPool;
+use blugin\api\paymentpool\lib\command\enum\EnumFactory;
 use blugin\api\paymentpool\lib\command\parameter\defaults\EnumParameter;
 use blugin\api\paymentpool\lib\command\parameter\Parameter;
-use pocketmine\command\CommandSender;
 
-class PaymentLinkParamater extends EnumParameter{
+class ConstParameter extends EnumParameter{
     public function getTypeName() : string{
-        return "paymentlink";
-    }
-
-    public function getFailureMessage(CommandSender $sender, string $argument) : ?string{
-        return "commands.generic.invalidLink";
+        return $this->getName();
     }
 
     public function prepare() : Parameter{
-        $this->enum = PaymentPool::getInstance()->getLinkEnum();
+        $this->enum = EnumFactory::getInstance()->set("const-{$this->getName()}", [$this->getName() => $this->getName()]);
         return $this;
-    }
-
-    public function valid(CommandSender $sender, string $argument) : bool{
-        return true;
     }
 }

@@ -31,13 +31,13 @@ use blugin\api\paymentpool\command\overload\InstallOverload;
 use blugin\api\paymentpool\command\overload\LinksOverload;
 use blugin\api\paymentpool\command\overload\PaymentsOverload;
 use blugin\api\paymentpool\command\overload\SetOverload;
-use blugin\lib\command\BaseCommandTrait;
-use blugin\lib\command\enum\Enum;
-use blugin\lib\command\enum\EnumFactory;
-use blugin\lib\command\listener\AvaliableCommandListener;
-use blugin\lib\command\listener\EnumUpdateListener;
-use blugin\lib\command\translator\traits\TranslatorHolderTrait;
-use blugin\lib\command\translator\TranslatorHolder;
+use blugin\api\paymentpool\lib\command\BaseCommandTrait;
+use blugin\api\paymentpool\lib\command\enum\Enum;
+use blugin\api\paymentpool\lib\command\enum\EnumFactory;
+use blugin\api\paymentpool\lib\command\listener\AvaliableCommandListener;
+use blugin\api\paymentpool\lib\command\listener\EnumUpdateListener;
+use blugin\api\paymentpool\lib\translator\traits\TranslatorHolderTrait;
+use blugin\api\paymentpool\lib\translator\TranslatorHolder;
 use pocketmine\plugin\PluginBase;
 
 class PaymentPool extends PluginBase implements TranslatorHolder{

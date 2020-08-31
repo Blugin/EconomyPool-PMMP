@@ -23,28 +23,33 @@
 
 declare(strict_types=1);
 
-namespace blugin\api\paymentpool\command\parameter;
+namespace blugin\api\paymentpool\lib\command\parameter\additions;
 
-use blugin\api\paymentpool\PaymentPool;
-use blugin\api\paymentpool\lib\command\parameter\defaults\EnumParameter;
-use blugin\api\paymentpool\lib\command\parameter\Parameter;
+use blugin\api\paymentpool\lib\command\parameter\defaults\StringParameter;
 use pocketmine\command\CommandSender;
+use pocketmine\item\Item;
+use pocketmine\item\ItemFactory;
+use pocketmine\network\mcpe\protocol\AvailableCommandsPacket;
 
-class PaymentLinkParamater extends EnumParameter{
+class ItemParameter extends StringParameter{
+    public function getType() : int{
+        return AvailableCommandsPacket::ARG_TYPE_INT;
+    }
+
     public function getTypeName() : string{
-        return "paymentlink";
+        return "item";
     }
 
     public function getFailureMessage(CommandSender $sender, string $argument) : ?string{
-        return "commands.generic.invalidLink";
+        return "commands.give.item.notFound";
     }
 
-    public function prepare() : Parameter{
-        $this->enum = PaymentPool::getInstance()->getLinkEnum();
-        return $this;
-    }
-
-    public function valid(CommandSender $sender, string $argument) : bool{
-        return true;
+    /** @return Item|null */
+    public function parseSilent(CommandSender $sender, string $argument){
+        try{
+            return ItemFactory::fromStringSingle($argument);
+        }catch(\InvalidArgumentException $e){
+            return null;
+        }
     }
 }
