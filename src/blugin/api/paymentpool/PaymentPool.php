@@ -34,6 +34,8 @@ use blugin\api\paymentpool\command\overload\SetOverload;
 use blugin\lib\command\BaseCommandTrait;
 use blugin\lib\command\enum\Enum;
 use blugin\lib\command\enum\EnumFactory;
+use blugin\lib\command\listener\AvaliableCommandListener;
+use blugin\lib\command\listener\EnumUpdateListener;
 use blugin\lib\command\translator\traits\TranslatorHolderTrait;
 use blugin\lib\command\translator\TranslatorHolder;
 use pocketmine\plugin\PluginBase;
@@ -83,6 +85,9 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
     }
 
     public function onEnable() : void{
+        $this->getServer()->getPluginManager()->registerEvents(new AvaliableCommandListener(), $this);
+        $this->getServer()->getPluginManager()->registerEvents(new EnumUpdateListener(), $this);
+
         //Register main command with subcommands
         $command = $this->getBaseCommand("payment");
         $command->addOverload(new SetOverload($command));
