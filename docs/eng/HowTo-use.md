@@ -6,20 +6,6 @@
   
 ## :book: How to use? - for user  
   
-### Plugins you need to use  
-#### [<img src="https://ghcdn.rawgit.org/Blugin/libCommand/master/icon.png" width="20px">**libCommand**](https://github.com/Blugin/libCommand)  
-- It is a library plug-in that manages commands by OOP them, and supports automatic completion and command setting  
-- Used to add `/ payment` command  
-  
-#### [<img src="https://ghcdn.rawgit.org/Blugin/Payments/master/icon.png" width="20px">**Payments**](https://github.com/Blugin/Payments)  
-- `PaymentProvider` plugins that link to the payment method plugin used in the server  
-- You need to get the plugin directly from here and apply it  
-> However, we know this is a cumbersome way, so we support the automatic install feature!  
-  
-<br>  
-----------  
-<br>  
-  
 ## How to use commands? `/payment <Set | Payments | Links | Install>`  
 > All commands support Minecraft's autocomplete feature  
 <img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/docs/in-game-command-screenshot.png" width="100%">

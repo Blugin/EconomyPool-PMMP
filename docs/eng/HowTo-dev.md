@@ -6,18 +6,6 @@
   
 ## :book: How to use? - for developer  
   
-### Plugins you need to use  
-#### [<img src="https://ghcdn.rawgit.org/Blugin/libCommand/master/icon.png" width="20px">**libCommand**](https://github.com/Blugin/libCommand)  
-- It is a library plug-in that manages commands by OOP them, and supports automatic completion and command setting  
-- Used to add `/ payment` command  
-  
-#### [<img src="https://ghcdn.rawgit.org/Blugin/PaymentPool/master/icon.png" width="20px">**PaymentPool**](https://github.com/Blugin/PaymentPool)  
-- This is the main API plugin `PaymentPool` plugin  
-  
-<br>  
-----------  
-<br>  
-  
 #### :zap: How to register a payment  
 > To register Payment, you need an object that implements `IPaymentProvider`  
 > The best examples are in [<img src="https://ghcdn.rawgit.org/Blugin/Payments/master/icon.png" width="20px">**Payments**](https://github.com/Blugin/Payments)  
@@ -130,11 +118,7 @@
 >     }
 > 
 >     public static function getPaymentProvider() : ?IPaymentProvider{
->         if(PaymentPool::getInstance()->getLink(self::LINK_NAME) === null){
->             PaymentPool::getInstance()->registerLink(self::LINK_NAME);
->         }
->   
->         return PaymentPool::getInstance()->getProvider(self::LINK_NAME);
+>         return PaymentPool::on(self::LINK_NAME);
 >     }
 > }
 > ```
