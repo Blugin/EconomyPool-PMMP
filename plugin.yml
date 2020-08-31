@@ -1,7 +1,7 @@
 ---
 name: PaymentPool
 main: blugin\api\paymentpool\PaymentPool
-version: 1.1.1
+version: 1.1.2
 api: [3.0.0]
 authors: ['Blugin-team', 'PresentKim']
 description: '[API] API plugin that registers and manages several payment plugins'
