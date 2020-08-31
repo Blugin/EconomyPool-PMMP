@@ -25,7 +25,7 @@ declare(strict_types=1);
 
 namespace blugin\api\paymentpool\lib\command\config;
 
-use pocketmine\permission\Permission;
+use pocketmine\permission\PermissionParser;
 
 class CommandConfigData{
     /** @var string */
@@ -55,11 +55,10 @@ class CommandConfigData{
         $this->name = (string) $configData["name"];
 
         if(isset($configData["permission"])){
-            try{
-                $this->permission = (string) Permission::getByName($configData["permission"]);
-            }catch(\InvalidArgumentException $e){
+            if(!isset(PermissionParser::DEFAULT_STRING_MAP[$configData["permission"]]))
                 throw new CommandConfigException("Invalid permission name : \"{$configData["permission"]}}\" ");
-            }
+
+            $this->permission = (string) $configData["permission"];
         }
 
         if(isset($configData["aliases"])){

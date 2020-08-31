@@ -29,7 +29,7 @@ use blugin\api\paymentpool\lib\command\parameter\Parameter;
 use pocketmine\command\CommandSender;
 use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\protocol\AvailableCommandsPacket;
-use pocketmine\Player;
+use pocketmine\player\Player;
 
 class Vector3Parameter extends Parameter{
     /** @var bool Whether to rounding down the coordinates */

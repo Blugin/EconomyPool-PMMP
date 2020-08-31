@@ -31,7 +31,7 @@ use blugin\api\paymentpool\lib\command\overload\Overload;
 use blugin\api\paymentpool\lib\command\traits\LabelHolderTrait;
 use pocketmine\command\CommandSender;
 use pocketmine\network\mcpe\protocol\AvailableCommandsPacket;
-use pocketmine\network\mcpe\protocol\types\CommandParameter;
+use pocketmine\network\mcpe\protocol\types\command\CommandParameter;
 
 abstract class Parameter extends CommandParameter{
     use LabelHolderTrait;

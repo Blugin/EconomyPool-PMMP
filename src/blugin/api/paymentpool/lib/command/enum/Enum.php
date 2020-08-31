@@ -25,7 +25,7 @@ declare(strict_types=1);
 
 namespace blugin\api\paymentpool\lib\command\enum;
 
-use pocketmine\network\mcpe\protocol\types\CommandEnum;
+use pocketmine\network\mcpe\protocol\types\command\CommandEnum;
 use pocketmine\Server;
 
 class Enum extends CommandEnum{
@@ -34,18 +34,20 @@ class Enum extends CommandEnum{
     public const PLAYERS_INCLUE_OFFLINE = "allplayer";
     public const WORLDS = "worlds";
 
+    /** @var string */
+    protected $name;
+
     /** @var mixed[] name => value */
     protected $values;
 
     /** @param mixed[]|null $values name => value */
     public function __construct(string $name, ?array $values = null){
-        $this->enumName = $name;
+        $this->name = $name;
         $this->values = $values ?? [];
-        $this->enumValues = $this->getValues();
     }
 
     public function getName() : string{
-        return $this->enumName;
+        return $this->name;
     }
 
     /** @return string[] name[] */
@@ -100,10 +102,15 @@ class Enum extends CommandEnum{
     protected function onUpdate() : void{
         /*
          * TODO: Figure out how to use softEnums
+         *
+         * $pk = new UpdateSoftEnumPacket();
+         * $pk->enumName = $this->getName();
+         * $pk->values = $this->getValues();
+         * $pk->type = UpdateSoftEnumPacket::TYPE_SET;
+         * Server::getInstance()->broadcastPackets(Server::getInstance()->getOnlinePlayers(), [$pk]);
         */
-        $this->enumValues = $this->getValues();
         foreach(Server::getInstance()->getOnlinePlayers() as $player){
-            $player->sendCommandData();
+            $player->getNetworkSession()->syncAvailableCommands();
         }
     }
 }

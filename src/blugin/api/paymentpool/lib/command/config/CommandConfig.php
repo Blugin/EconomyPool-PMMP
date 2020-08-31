@@ -26,11 +26,12 @@ declare(strict_types=1);
 namespace blugin\api\paymentpool\lib\command\config;
 
 use pocketmine\plugin\PluginBase;
+use pocketmine\plugin\PluginOwned;
+use pocketmine\plugin\PluginOwnedTrait;
 use pocketmine\utils\Config;
 
-class CommandConfig extends Config{
-    /** @var PluginBase */
-    protected $owningPlugin;
+class CommandConfig extends Config implements PluginOwned{
+    use PluginOwnedTrait;
 
     /** @var CommandConfigData[] name => command config data */
     protected $dataMap;
@@ -48,9 +49,5 @@ class CommandConfig extends Config{
 
     public function getData(string $name) : ?CommandConfigData{
         return $this->dataMap[$name] ?? null;
-    }
-
-    public function getOwningPlugin() : PluginBase{
-        return $this->owningPlugin;
     }
 }
