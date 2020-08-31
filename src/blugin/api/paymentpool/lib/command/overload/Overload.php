@@ -26,6 +26,7 @@ declare(strict_types=1);
 namespace blugin\api\paymentpool\lib\command\overload;
 
 use blugin\api\paymentpool\lib\command\BaseCommand;
+use blugin\api\paymentpool\lib\command\handler\ClosureCommandHandler;
 use blugin\api\paymentpool\lib\command\handler\ICommandHandler;
 use blugin\api\paymentpool\lib\command\parameter\Parameter;
 use pocketmine\command\CommandSender;
@@ -115,7 +116,11 @@ class Overload{
         return $this->handler;
     }
 
-    public function setHandler(?ICommandHandler $handler) : Overload{
+    /** @param ICommandHandler|\Closure|null $handler */
+    public function setHandler($handler) : Overload{
+        if($handler instanceof \Closure){
+            $handler = new ClosureCommandHandler($handler);
+        }
         $this->handler = $handler;
         return $this;
     }
