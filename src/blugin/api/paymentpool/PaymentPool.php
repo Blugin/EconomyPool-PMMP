@@ -47,8 +47,12 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
         return self::$instance;
     }
 
-    public static function on($option = null, bool $default = true) : ?IPaymentProvider{
-        return self::getInstance()->getProvider($option, $default);
+    public static function on($name) : ?IPaymentProvider{
+        $pool = self::getInstance();
+        if($pool->getLink($name) === null){
+            $pool->registerLink($name);
+        }
+        return $pool->getProvider($name);
     }
 
     public const DEFAULT_NAME = "@";
