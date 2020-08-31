@@ -29,10 +29,10 @@ use blugin\api\paymentpool\command\parameter\PaymentLinkParamater;
 use blugin\api\paymentpool\command\parameter\PaymentParameter;
 use blugin\api\paymentpool\IPaymentProvider;
 use blugin\api\paymentpool\PaymentLink;
-use blugin\lib\command\BaseCommand;
-use blugin\lib\command\handler\ICommandHandler;
-use blugin\lib\command\overload\NamedOverload;
-use blugin\lib\command\overload\Overload;
+use blugin\api\paymentpool\lib\command\BaseCommand;
+use blugin\api\paymentpool\lib\command\handler\ICommandHandler;
+use blugin\api\paymentpool\lib\command\overload\NamedOverload;
+use blugin\api\paymentpool\lib\command\overload\Overload;
 use pocketmine\command\CommandSender;
 
 class SetOverload extends NamedOverload implements ICommandHandler{

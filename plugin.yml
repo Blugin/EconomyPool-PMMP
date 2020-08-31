@@ -5,7 +5,6 @@ version: 1.0.0
 api: [4.0.0]
 authors: ['Blugin-team', 'PresentKim']
 description: '[API] API plugin that registers and manages several payment plugins'
-depend: ['libCommand']
 load: STARTUP
 
 permissions:
