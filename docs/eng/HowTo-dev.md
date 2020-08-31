@@ -130,11 +130,7 @@
 >     }
 > 
 >     public static function getPaymentProvider() : ?IPaymentProvider{
->         if(PaymentPool::getInstance()->getLink(self::LINK_NAME) === null){
->             PaymentPool::getInstance()->registerLink(self::LINK_NAME);
->         }
->   
->         return PaymentPool::getInstance()->getProvider(self::LINK_NAME);
+>         return PaymentPool::on(self::LINK_NAME);
 >     }
 > }
 > ```
