@@ -39,7 +39,6 @@ trait PaymentTrait{
         $pool = PaymentPool::getInstance();
         $name = self::getInstance();
         if($pool->getLink($name) === null){
-            var_dump("link 없음");
             $pool->registerLink($name);
         }
 
