@@ -29,6 +29,7 @@ use blugin\api\paymentpool\lib\command\BaseCommand;
 use pocketmine\event\Listener;
 use pocketmine\event\server\DataPacketSendEvent;
 use pocketmine\network\mcpe\protocol\AvailableCommandsPacket;
+use pocketmine\player\Player;
 use pocketmine\Server;
 
 class AvaliableCommandListener implements Listener{
@@ -38,12 +39,23 @@ class AvaliableCommandListener implements Listener{
      * @priority HIGHEST
      */
     public function onDataPacketSend(DataPacketSendEvent $event) : void{
-        $packet = $event->getPacket();
-        if($packet instanceof AvailableCommandsPacket){
-            foreach($packet->commandData as $name => $commandData){
-                $command = Server::getInstance()->getCommandMap()->getCommand($name);
-                if($command instanceof BaseCommand){
-                    $commandData->overloads = $command->asOverloadsArray($event->getPlayer());
+        $player = null;
+        foreach($event->getTargets() as $target){
+            if($target instanceof Player){
+                $player = $target;
+                break;
+            }
+        }
+        if($player === null)
+            return;
+
+        foreach($event->getPackets() as $packet){
+            if($packet instanceof AvailableCommandsPacket){
+                foreach($packet->commandData as $name => $commandData){
+                    $command = Server::getInstance()->getCommandMap()->getCommand($name);
+                    if($command instanceof BaseCommand){
+                        $commandData->overloads = $command->asOverloadsArray($player);
+                    }
                 }
             }
         }

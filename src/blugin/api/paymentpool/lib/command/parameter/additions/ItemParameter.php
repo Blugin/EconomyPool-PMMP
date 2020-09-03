@@ -28,7 +28,7 @@ namespace blugin\api\paymentpool\lib\command\parameter\additions;
 use blugin\api\paymentpool\lib\command\parameter\defaults\StringParameter;
 use pocketmine\command\CommandSender;
 use pocketmine\item\Item;
-use pocketmine\item\ItemFactory;
+use pocketmine\item\LegacyStringToItemParser;
 use pocketmine\network\mcpe\protocol\AvailableCommandsPacket;
 
 class ItemParameter extends StringParameter{
@@ -47,7 +47,7 @@ class ItemParameter extends StringParameter{
     /** @return Item|null */
     public function parseSilent(CommandSender $sender, string $argument){
         try{
-            return ItemFactory::fromStringSingle($argument);
+            return LegacyStringToItemParser::getInstance()->parse($argument);
         }catch(\InvalidArgumentException $e){
             return null;
         }

@@ -30,7 +30,7 @@ use blugin\api\paymentpool\lib\command\handler\ClosureCommandHandler;
 use blugin\api\paymentpool\lib\command\handler\ICommandHandler;
 use blugin\api\paymentpool\lib\command\parameter\Parameter;
 use pocketmine\command\CommandSender;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 
 class Overload{

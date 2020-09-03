@@ -31,7 +31,7 @@ use blugin\api\paymentpool\lib\command\parameter\Parameter;
 use blugin\api\paymentpool\lib\command\traits\LabelHolderTrait;
 use blugin\api\paymentpool\lib\command\traits\NameHolderTrait;
 use pocketmine\command\CommandSender;
-use pocketmine\Player;
+use pocketmine\player\Player;
 
 class NamedOverload extends Overload{
     use LabelHolderTrait, NameHolderTrait;
