@@ -38,14 +38,12 @@ class AvaliableCommandListener implements Listener{
      * @priority HIGHEST
      */
     public function onDataPacketSend(DataPacketSendEvent $event) : void{
-        $packets = $event->getPackets();
-        foreach($packets as $packet){
-            if($packet instanceof AvailableCommandsPacket){
-                foreach($packet->commandData as $name => $commandData){
-                    $command = Server::getInstance()->getCommandMap()->getCommand($name);
-                    if($command instanceof BaseCommand){
-                        $commandData->overloads = $command->asOverloadsArray();
-                    }
+        $packet = $event->getPacket();
+        if($packet instanceof AvailableCommandsPacket){
+            foreach($packet->commandData as $name => $commandData){
+                $command = Server::getInstance()->getCommandMap()->getCommand($name);
+                if($command instanceof BaseCommand){
+                    $commandData->overloads = $command->asOverloadsArray($event->getPlayer());
                 }
             }
         }
