@@ -144,9 +144,15 @@ abstract class Parameter extends CommandParameter{
         return "commands.generic.parameter.invalid";
     }
 
-    public function toUsageString() : string{
-        $name = $this->getName() . ": " . $this->getTypeName();
+    public function toUsageString(Overload $overload, ?CommandSender $sender = null) : string{
+        $name = $this->getTranslatedName($overload, $sender) . ": " . $this->getTypeName();
         return $this->isOptional() ? "[$name]" : "<$name>";
+    }
+
+    public function getTranslatedName(Overload $overload, ?CommandSender $sender = null) : string{
+        $messageId = $overload->getMessageId("parameter.{$this->getLabel()}");
+        $name = $this->getBaseCommand()->getMessage($sender, $messageId);
+        return $messageId === $name ? $this->getName() : $name;
     }
 
     public function prepare() : Parameter{

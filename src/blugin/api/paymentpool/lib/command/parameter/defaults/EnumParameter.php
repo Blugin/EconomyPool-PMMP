@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace blugin\api\paymentpool\lib\command\parameter\defaults;
 
+use blugin\api\paymentpool\lib\command\overload\Overload;
 use blugin\api\paymentpool\lib\command\parameter\Parameter;
 use pocketmine\command\CommandSender;
 use pocketmine\network\mcpe\protocol\AvailableCommandsPacket;
@@ -44,14 +45,14 @@ abstract class EnumParameter extends Parameter{
         return "unknown";
     }
 
-    public function toUsageString() : string{
+    public function toUsageString(Overload $overload, ?CommandSender $sender = null) : string{
         if($this->enum === null)
-            return parent::toUsageString();
+            return parent::toUsageString($overload, $sender);
 
         if(count($this->enum->getValues()) === 1)
             return $this->enum->getValues()[0];
 
-        $name = $this->getName() . ": " . $this->enum->getName();
+        $name = $this->getTranslatedName($overload, $sender) . ": " . $this->enum->getName();
         return $this->isOptional() ? "[$name]" : "<$name>";
     }
 

@@ -43,7 +43,7 @@ class AvaliableCommandListener implements Listener{
             foreach($packet->commandData as $name => $commandData){
                 $command = Server::getInstance()->getCommandMap()->getCommand($name);
                 if($command instanceof BaseCommand){
-                    $commandData->overloads = $command->asOverloadsArray();
+                    $commandData->overloads = $command->asOverloadsArray($event->getPlayer());
                 }
             }
         }

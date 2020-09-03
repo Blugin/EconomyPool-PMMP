@@ -45,6 +45,6 @@ class ClosureCommandHandler implements ICommandHandler{
      * @param mixed[] $args name => value
      */
     public function handle(CommandSender $sender, array $args, Overload $overload) : bool{
-        ($this->closure)($sender, $args, $overload);
+        return ($this->closure)($sender, $args, $overload);
     }
 }

@@ -13,35 +13,24 @@ payment:
 
   #Aliases of main command
   #You can add, replace, or remove them as you like
-  aliases: ["paymentpool", "pay"]
+  aliases: ["paymentpool", "pay", "결제수단"]
 
   children:
     #Setting of subcommands
     #Same as main command setting
     set:
       name: "Set"
-      aliases: ["s"]
+      aliases: ["s", "설정"]
       permission: "op"
-      children:
-        payment:
-          name: "Payment"
-        plugin:
-          name: "Plugin"
     payments:
       name: "Payments"
-      aliases: ["paymentlist", "list"]
+      aliases: ["paymentlist", "list", "목록"]
       permission: "op"
-      children:
-        page:
-          name: "Page"
     links:
       name: "Links"
-      aliases: ["l", "linklist"]
+      aliases: ["l", "linklist", "링크", "링크목록"]
       permission: "op"
-      children:
-        page:
-          name: "Page"
     install:
       name: "Install"
-      aliases: ["autoinstall", "download"]
+      aliases: ["autoinstall", "download", "설치", "자동설치"]
       permission: "op"

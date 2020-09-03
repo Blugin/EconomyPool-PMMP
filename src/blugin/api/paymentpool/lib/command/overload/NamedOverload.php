@@ -31,6 +31,7 @@ use blugin\api\paymentpool\lib\command\parameter\Parameter;
 use blugin\api\paymentpool\lib\command\traits\LabelHolderTrait;
 use blugin\api\paymentpool\lib\command\traits\NameHolderTrait;
 use pocketmine\command\CommandSender;
+use pocketmine\Player;
 
 class NamedOverload extends Overload{
     use LabelHolderTrait, NameHolderTrait;
@@ -44,7 +45,7 @@ class NamedOverload extends Overload{
         $this->setName($name);
     }
 
-    public function getFullMessage(string $str) : string{
+    public function getMessageId(string $str) : string{
         return "commands.{$this->baseCommand->getLabel()}.{$this->getLabel()}.$str";
     }
 
@@ -64,8 +65,8 @@ class NamedOverload extends Overload{
     }
 
     /** @return Parameter[] */
-    public function getParameters() : array{
-        return array_merge([$this->getNameParameter()], parent::getParameters());
+    public function getParameters(Player $player) : array{
+        return array_merge([$this->getNameParameter(false, $this->getTranslatedName($player))], parent::getParameters($player));
     }
 
     public function addParamater(Parameter $parameter) : Overload{
@@ -80,8 +81,14 @@ class NamedOverload extends Overload{
         return $this;
     }
 
-    public function toUsageString() : string{
-        return $this->name . " " . parent::toUsageString();
+    public function toUsageString(?CommandSender $sender = null) : string{
+        return $this->getTranslatedName($sender) . " " . parent::toUsageString($sender);
+    }
+
+    public function getTranslatedName(?CommandSender $sender = null) : string{
+        $messageId = $this->getMessageId("name");
+        $name = $this->getBaseCommand()->getMessage($sender, $messageId);
+        return $messageId === $name ? $this->getName() : $name;
     }
 
     public function getNameParameter(?bool $exact = false, ?string $name = null) : ConstParameter{
