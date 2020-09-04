@@ -26,8 +26,8 @@ declare(strict_types=1);
 namespace blugin\api\paymentpool\command\parameter;
 
 use blugin\api\paymentpool\PaymentPool;
-use blugin\api\paymentpool\lib\command\parameter\defaults\EnumParameter;
-use blugin\api\paymentpool\lib\command\parameter\Parameter;
+use blugin\lib\command\parameter\defaults\EnumParameter;
+use blugin\lib\command\parameter\Parameter;
 use pocketmine\command\CommandSender;
 
 class PaymentParameter extends EnumParameter{

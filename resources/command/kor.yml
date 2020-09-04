@@ -13,35 +13,24 @@ payment:
 
   #메인 명령어의 별칭들
   #원하는대로 추가, 수정, 삭제할 수 있습니다
-  aliases: ["paymentpool", "pay"]
+  aliases: ["paymentpool", "pay", "결제수단"]
 
   children:
     #하위 명령어들의 설정
     #메인 명령어 설정과 동일합니다
     set:
       name: "Set"
-      aliases: ["s"]
+      aliases: ["s", "설정"]
       permission: "op"
-      children:
-        payment:
-          name: "Payment"
-        plugin:
-          name: "Plugin"
     payments:
       name: "Payments"
-      aliases: ["paymentlist", "list"]
+      aliases: ["paymentlist", "list", "목록"]
       permission: "op"
-      children:
-        page:
-          name: "Page"
     links:
       name: "Links"
-      aliases: ["l", "linklist"]
+      aliases: ["l", "linklist", "링크", "링크목록"]
       permission: "op"
-      children:
-        page:
-          name: "Page"
     install:
       name: "Install"
-      aliases: ["autoinstall", "download"]
+      aliases: ["autoinstall", "download", "설치", "자동설치"]
       permission: "op"
