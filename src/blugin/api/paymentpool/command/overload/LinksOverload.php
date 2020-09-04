@@ -27,11 +27,11 @@ namespace blugin\api\paymentpool\command\overload;
 
 use blugin\api\paymentpool\PaymentPool;
 use blugin\api\paymentpool\PaymentLink;
-use blugin\api\paymentpool\lib\command\BaseCommand;
-use blugin\api\paymentpool\lib\command\handler\ICommandHandler;
-use blugin\api\paymentpool\lib\command\overload\NamedOverload;
-use blugin\api\paymentpool\lib\command\overload\Overload;
-use blugin\api\paymentpool\lib\command\parameter\defaults\IntegerParameter;
+use blugin\lib\command\BaseCommand;
+use blugin\lib\command\handler\ICommandHandler;
+use blugin\lib\command\overload\NamedOverload;
+use blugin\lib\command\overload\Overload;
+use blugin\lib\command\parameter\defaults\IntegerParameter;
 use pocketmine\command\CommandSender;
 
 class LinksOverload extends NamedOverload implements ICommandHandler{

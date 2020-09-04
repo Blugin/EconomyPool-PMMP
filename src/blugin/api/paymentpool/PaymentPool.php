@@ -31,13 +31,13 @@ use blugin\api\paymentpool\command\overload\InstallOverload;
 use blugin\api\paymentpool\command\overload\LinksOverload;
 use blugin\api\paymentpool\command\overload\PaymentsOverload;
 use blugin\api\paymentpool\command\overload\SetOverload;
-use blugin\api\paymentpool\lib\command\BaseCommandTrait;
-use blugin\api\paymentpool\lib\command\enum\Enum;
-use blugin\api\paymentpool\lib\command\enum\EnumFactory;
-use blugin\api\paymentpool\lib\command\listener\AvaliableCommandListener;
-use blugin\api\paymentpool\lib\command\listener\EnumUpdateListener;
-use blugin\api\paymentpool\lib\translator\traits\TranslatorHolderTrait;
-use blugin\api\paymentpool\lib\translator\TranslatorHolder;
+use blugin\lib\command\BaseCommandTrait;
+use blugin\lib\command\enum\Enum;
+use blugin\lib\command\enum\EnumFactory;
+use blugin\lib\command\listener\AvaliableCommandListener;
+use blugin\lib\command\listener\EnumUpdateListener;
+use blugin\lib\translator\traits\TranslatorHolderTrait;
+use blugin\lib\translator\TranslatorHolder;
 use pocketmine\plugin\PluginBase;
 
 class PaymentPool extends PluginBase implements TranslatorHolder{
@@ -85,8 +85,13 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
     }
 
     public function onEnable() : void{
-        $this->getServer()->getPluginManager()->registerEvents(new AvaliableCommandListener(), $this);
-        $this->getServer()->getPluginManager()->registerEvents(new EnumUpdateListener(), $this);
+        if(!AvaliableCommandListener::isRegistered()){
+            AvaliableCommandListener::register($this);
+        }
+
+        if(!EnumUpdateListener::isRegistered()){
+            EnumUpdateListener::register($this);
+        }
 
         //Register main command with subcommands
         $command = $this->getBaseCommand("payment");
