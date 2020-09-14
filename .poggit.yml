@@ -10,5 +10,5 @@ projects:
       - src: blugin/libcommand/libcommand
         version: ^1.3.2
       - src: blugin/libtranslator/libtranslator
-        version: ^1.0.4
+        version: ^1.0.5
 ...
