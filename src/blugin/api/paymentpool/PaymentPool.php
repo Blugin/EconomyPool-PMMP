@@ -38,16 +38,11 @@ use blugin\lib\command\listener\AvaliableCommandListener;
 use blugin\lib\command\listener\EnumUpdateListener;
 use blugin\lib\translator\traits\TranslatorHolderTrait;
 use blugin\lib\translator\TranslatorHolder;
+use blugin\traits\singleton\SingletonTrait;
 use pocketmine\plugin\PluginBase;
 
 class PaymentPool extends PluginBase implements TranslatorHolder{
-    use TranslatorHolderTrait, BaseCommandTrait;
-
-    private static $instance;
-
-    public static function getInstance() : PaymentPool{
-        return self::$instance;
-    }
+    use TranslatorHolderTrait, BaseCommandTrait, SingletonTrait;
 
     public static function on($name) : ?IPaymentProvider{
         $pool = self::getInstance();
