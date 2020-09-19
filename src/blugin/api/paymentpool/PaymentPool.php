@@ -149,7 +149,7 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
     /** @param string|object|null $value string or null or object (has getName()). If it was null, return default provider */
     public function getProvider($name = null, bool $default = true) : ?IPaymentProvider{
         $providerName = null;
-        $name = $this->getNameFrom($name, "getProvider");
+        $name = self::getNameFrom($name, "getProvider");
         if(is_string($name)){
             if($this->linkEnum->has($name)){
                 $providerName = $this->linkEnum->get($name)->getDefault();
@@ -190,12 +190,12 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
 
     /** @param string|object $value string or null or object (has getName()) */
     public function getLink($name) : ?PaymentLink{
-        return $this->linkEnum->get($this->getNameFrom($name, "getLink")) ?? null;
+        return $this->linkEnum->get(self::getNameFrom($name, "getLink")) ?? null;
     }
 
     /** @param string|object $value string or null or object (has getName()) */
     public function registerLink($name) : void{
-        $name = $this->getNameFrom($name, "getLink");
+        $name = self::getNameFrom($name, "getLink");
         if($name === null)
             throw new \RuntimeException("Argument 1 passed to Payment::getLink() must be of the type string or object with 'getName' method, " . gettype($name) . " given");
 
@@ -214,7 +214,7 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
     }
 
     /** @param string|object|null $value string or null or object (has getName()) */
-    private function getNameFrom($value, string $methodName) : ?string{
+    private static function getNameFrom($value, string $methodName) : ?string{
         if($value === null)
             return null;
 
