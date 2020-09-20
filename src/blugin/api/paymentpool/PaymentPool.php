@@ -77,13 +77,8 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
     }
 
     public function onEnable() : void{
-        if(!AvaliableCommandListener::isRegistered()){
-            AvaliableCommandListener::register($this);
-        }
-
-        if(!EnumUpdateListener::isRegistered()){
-            EnumUpdateListener::register($this);
-        }
+        AvaliableCommandListener::register($this);
+        EnumUpdateListener::register($this);
 
         //Register main command with subcommands
         $command = $this->getBaseCommand("payment");
