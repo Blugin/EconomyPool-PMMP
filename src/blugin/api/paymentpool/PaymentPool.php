@@ -39,6 +39,7 @@ use blugin\lib\command\listener\EnumUpdateListener;
 use blugin\lib\translator\traits\TranslatorHolderTrait;
 use blugin\lib\translator\TranslatorHolder;
 use blugin\traits\singleton\SingletonTrait;
+use blugin\utils\arrays\ArrayUtil as Arr;
 use pocketmine\plugin\PluginBase;
 
 class PaymentPool extends PluginBase implements TranslatorHolder{
@@ -200,8 +201,7 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
     public function getDefault() : ?string{
         $defaultLink = $this->getLink(self::DEFAULT_NAME);
         $default = $defaultLink === null ? null : $defaultLink->getDefault();
-        $providers = $this->getProviders();
-        return $default ?? (empty($providers) ? null : array_key_first($providers));
+        return $default ?? Arr::firstKey($this->getProviders());
     }
 
     public function setDefault(?string $default) : void{
