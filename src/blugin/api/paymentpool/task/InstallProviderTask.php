@@ -34,7 +34,7 @@ final class InstallProviderTask extends AsyncTask{
     public function onCompletion(Server $server) : void{
         $result = $this->getResult();
         if($result !== null){
-            $providersPath = PaymentPool::getInstance()->getPrividerFolder();
+            $providersPath = PaymentPool::getInstance()->getProvidersPath();
             $pluginManager = Server::getInstance()->getPluginManager();
             foreach($result as $providerName => $scriptData){
                 if($pluginManager->getPlugin("Payment" . $providerName) !== null)

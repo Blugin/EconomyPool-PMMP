@@ -38,16 +38,12 @@ use blugin\lib\command\listener\AvaliableCommandListener;
 use blugin\lib\command\listener\EnumUpdateListener;
 use blugin\lib\translator\traits\TranslatorHolderTrait;
 use blugin\lib\translator\TranslatorHolder;
+use blugin\traits\singleton\SingletonTrait;
+use blugin\utils\arrays\ArrayUtil as Arr;
 use pocketmine\plugin\PluginBase;
 
 class PaymentPool extends PluginBase implements TranslatorHolder{
-    use TranslatorHolderTrait, BaseCommandTrait;
-
-    private static $instance;
-
-    public static function getInstance() : PaymentPool{
-        return self::$instance;
-    }
+    use TranslatorHolderTrait, BaseCommandTrait, SingletonTrait;
 
     public static function on($name) : ?IPaymentProvider{
         $pool = self::getInstance();
@@ -79,19 +75,11 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
 
         $this->loadLanguage();
         $this->getBaseCommand("payment");
-
-        //Load provider scripts
-        $this->getServer()->getPluginManager()->loadPlugins($this->getPrividerFolder());
     }
 
     public function onEnable() : void{
-        if(!AvaliableCommandListener::isRegistered()){
-            AvaliableCommandListener::register($this);
-        }
-
-        if(!EnumUpdateListener::isRegistered()){
-            EnumUpdateListener::register($this);
-        }
+        AvaliableCommandListener::register($this);
+        EnumUpdateListener::register($this);
 
         //Register main command with subcommands
         $command = $this->getBaseCommand("payment");
@@ -122,6 +110,9 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
                 throw new \RuntimeException("[data.json] Unable to parse info data");
             }
         }
+
+        //Load provider scripts
+        $this->getServer()->getPluginManager()->loadPlugins($this->getProvidersPath());
     }
 
     public function onDisable() : void{
@@ -134,7 +125,7 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
         $this->linkEnum->setAll([]);
     }
 
-    public function getPrividerFolder() : string{
+    public function getProvidersPath() : string{
         $path = $this->getDataFolder() . "providers/";
         if(!file_exists($path)){
             mkdir($path, 0777, true);
@@ -154,7 +145,7 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
     /** @param string|object|null $value string or null or object (has getName()). If it was null, return default provider */
     public function getProvider($name = null, bool $default = true) : ?IPaymentProvider{
         $providerName = null;
-        $name = $this->getNameFrom($name, "getProvider");
+        $name = self::getNameFrom($name, "getProvider");
         if(is_string($name)){
             if($this->linkEnum->has($name)){
                 $providerName = $this->linkEnum->get($name)->getDefault();
@@ -195,12 +186,12 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
 
     /** @param string|object $value string or null or object (has getName()) */
     public function getLink($name) : ?PaymentLink{
-        return $this->linkEnum->get($this->getNameFrom($name, "getLink")) ?? null;
+        return $this->linkEnum->get(self::getNameFrom($name, "getLink")) ?? null;
     }
 
     /** @param string|object $value string or null or object (has getName()) */
     public function registerLink($name) : void{
-        $name = $this->getNameFrom($name, "getLink");
+        $name = self::getNameFrom($name, "getLink");
         if($name === null)
             throw new \RuntimeException("Argument 1 passed to Payment::getLink() must be of the type string or object with 'getName' method, " . gettype($name) . " given");
 
@@ -210,8 +201,7 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
     public function getDefault() : ?string{
         $defaultLink = $this->getLink(self::DEFAULT_NAME);
         $default = $defaultLink === null ? null : $defaultLink->getDefault();
-        $providers = $this->getProviders();
-        return $default ?? (empty($providers) ? null : array_key_first($providers));
+        return $default ?? Arr::firstKey($this->getProviders());
     }
 
     public function setDefault(?string $default) : void{
@@ -219,7 +209,7 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
     }
 
     /** @param string|object|null $value string or null or object (has getName()) */
-    private function getNameFrom($value, string $methodName) : ?string{
+    private static function getNameFrom($value, string $methodName) : ?string{
         if($value === null)
             return null;
 
