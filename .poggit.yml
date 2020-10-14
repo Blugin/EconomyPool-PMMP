@@ -7,12 +7,12 @@ projects:
     lint:
       phpstan: false
     libs:
-      - src: blugin/libcommand/libcommand
+      - src: Blugin/libcommand/libcommand
         version: ^1.3.2
-      - src: blugin/libtranslator/libtranslator
+      - src: Blugin/libtranslator/libtranslator
         version: ^1.0.5
-      - src: Blugin/virions/arrayutils
+      - src: Blugin/arrayutils/arrayutils
         version: ^2.0.0
-      - src: Blugin/virions/SingletonTrait
+      - src: Blugin/SingletonTrait/SingletonTrait
         version: ^1.0.0
 ...
