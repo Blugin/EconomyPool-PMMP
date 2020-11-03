@@ -31,15 +31,15 @@ use blugin\api\paymentpool\command\overload\InstallOverload;
 use blugin\api\paymentpool\command\overload\LinksOverload;
 use blugin\api\paymentpool\command\overload\PaymentsOverload;
 use blugin\api\paymentpool\command\overload\SetOverload;
-use blugin\lib\command\BaseCommandTrait;
-use blugin\lib\command\enum\Enum;
-use blugin\lib\command\enum\EnumFactory;
-use blugin\lib\command\listener\AvaliableCommandListener;
-use blugin\lib\command\listener\EnumUpdateListener;
-use blugin\lib\translator\traits\TranslatorHolderTrait;
-use blugin\lib\translator\TranslatorHolder;
-use blugin\traits\singleton\SingletonTrait;
-use blugin\utils\arrays\ArrayUtil as Arr;
+use kim\present\lib\arrayutils\ArrayUtils as Arr;
+use kim\present\lib\command\BaseCommandTrait;
+use kim\present\lib\command\enum\Enum;
+use kim\present\lib\command\enum\EnumFactory;
+use kim\present\lib\command\listener\AvaliableCommandListener;
+use kim\present\lib\command\listener\EnumUpdateListener;
+use kim\present\lib\translator\traits\TranslatorHolderTrait;
+use kim\present\lib\translator\TranslatorHolder;
+use kim\present\traits\singleton\SingletonTrait;
 use pocketmine\plugin\PluginBase;
 
 class PaymentPool extends PluginBase implements TranslatorHolder{
@@ -201,7 +201,7 @@ class PaymentPool extends PluginBase implements TranslatorHolder{
     public function getDefault() : ?string{
         $defaultLink = $this->getLink(self::DEFAULT_NAME);
         $default = $defaultLink === null ? null : $defaultLink->getDefault();
-        return $default ?? Arr::firstKey($this->getProviders());
+        return $default ?? Arr::keyFirstFrom($this->getProviders());
     }
 
     public function setDefault(?string $default) : void{
