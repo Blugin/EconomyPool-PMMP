@@ -44,7 +44,8 @@ final class InstallProviderTask extends AsyncTask{
                 if(file_put_contents($scriptPath, $scriptData) === false)
                     continue;
 
-                $pluginManager->loadPlugin($scriptPath);
+                $plugin = $pluginManager->loadPlugin($scriptPath);
+                $pluginManager->enablePlugin($plugin);
             }
         }
     }
