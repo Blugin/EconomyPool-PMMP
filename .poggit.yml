@@ -8,7 +8,7 @@ projects:
       phpstan: false
     libs:
       - src: PresentKim/libcommand/libcommand
-        version: ^2.0.1
+        version: ^2.1.2
       - src: PresentKim/libtranslator/libtranslator
         version: ^2.0.0
       - src: PresentKim/arrayutils/arrayutils
