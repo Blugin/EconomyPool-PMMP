@@ -26,8 +26,9 @@ declare(strict_types=1);
 namespace blugin\api\paymentpool\command\parameter;
 
 use blugin\api\paymentpool\PaymentPool;
-use blugin\lib\command\parameter\defaults\EnumParameter;
-use blugin\lib\command\parameter\Parameter;
+use kim\present\lib\command\overload\Overload;
+use kim\present\lib\command\parameter\defaults\EnumParameter;
+use kim\present\lib\command\parameter\Parameter;
 use pocketmine\command\CommandSender;
 
 class PaymentLinkParamater extends EnumParameter{
@@ -39,9 +40,9 @@ class PaymentLinkParamater extends EnumParameter{
         return "commands.generic.invalidLink";
     }
 
-    public function prepare() : Parameter{
+    public function prepare(Overload $overload, ?CommandSender $sender = null) : Parameter{
         $this->enum = PaymentPool::getInstance()->getLinkEnum();
-        return $this;
+        return parent::prepare($overload, $sender);
     }
 
     public function valid(CommandSender $sender, string $argument) : bool{

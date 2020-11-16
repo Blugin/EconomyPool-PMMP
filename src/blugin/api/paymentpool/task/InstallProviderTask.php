@@ -9,23 +9,18 @@ use pocketmine\Server;
 use const pocketmine\BASE_VERSION;
 
 final class InstallProviderTask extends AsyncTask{
-    public const URL_PREFIX = "https://raw.githubusercontent.com/Blugin/Payments/master/";
-    public const URL_LIST_JSON = self::URL_PREFIX . "list.json";
-    public const FILENAME_FORMAT = "%s-%s.x.x.php";
-
     public function onRun() : void{
-        $data = $this->getFileFrom(self::URL_LIST_JSON);
+        $urlPrefix = "https://raw.githubusercontent.com/Blugin/Payments/master/";
+
+        $data = $this->getFileFrom("{$urlPrefix}list.json");
         if(!is_string($data))
             return;
 
         $result = [];
         foreach(json_decode($data, true) as $className => $providerName){
-            if(!class_exists($className))
-                continue;
-
-            $scriptData = $this->getFileFrom(sprintf(self::URL_PREFIX . self::FILENAME_FORMAT, $providerName, BASE_VERSION[0]));
+            $scriptData = $this->getFileFrom(sprintf("{$urlPrefix}%s-%s.x.x.php", $providerName, BASE_VERSION[0]));
             if(is_string($scriptData)){
-                $result[$providerName] = $scriptData;
+                $result[$providerName] = [$className, $scriptData];
             }
         }
         $this->setResult($result);
@@ -36,7 +31,11 @@ final class InstallProviderTask extends AsyncTask{
         if($result !== null){
             $providersPath = PaymentPool::getInstance()->getProvidersPath();
             $pluginManager = Server::getInstance()->getPluginManager();
-            foreach($result as $providerName => $scriptData){
+            foreach($result as $providerName => $value){
+                [$className, $scriptData] = $value;
+                if(!class_exists("\\" . $className))
+                    continue;
+
                 if($pluginManager->getPlugin("Payment" . $providerName) !== null)
                     continue;
 
@@ -44,7 +43,8 @@ final class InstallProviderTask extends AsyncTask{
                 if(file_put_contents($scriptPath, $scriptData) === false)
                     continue;
 
-                $pluginManager->loadPlugin($scriptPath);
+                $plugin = $pluginManager->loadPlugin($scriptPath);
+                $pluginManager->enablePlugin($plugin);
             }
         }
     }

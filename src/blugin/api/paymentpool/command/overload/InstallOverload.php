@@ -26,10 +26,10 @@ declare(strict_types=1);
 namespace blugin\api\paymentpool\command\overload;
 
 use blugin\api\paymentpool\task\InstallProviderTask;
-use blugin\lib\command\BaseCommand;
-use blugin\lib\command\handler\ICommandHandler;
-use blugin\lib\command\overload\NamedOverload;
-use blugin\lib\command\overload\Overload;
+use kim\present\lib\command\BaseCommand;
+use kim\present\lib\command\handler\ICommandHandler;
+use kim\present\lib\command\overload\NamedOverload;
+use kim\present\lib\command\overload\Overload;
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
 
