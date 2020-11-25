@@ -39,8 +39,8 @@ use kim\present\lib\command\listener\AvaliableCommandListener;
 use kim\present\lib\command\listener\EnumUpdateListener;
 use kim\present\lib\translator\traits\TranslatorHolderTrait;
 use kim\present\lib\translator\TranslatorHolder;
-use kim\present\traits\singleton\SingletonTrait;
 use pocketmine\plugin\PluginBase;
+use pocketmine\utils\SingletonTrait;
 
 class PaymentPool extends PluginBase implements TranslatorHolder{
     use TranslatorHolderTrait, BaseCommandTrait, SingletonTrait;

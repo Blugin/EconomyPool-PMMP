@@ -13,6 +13,4 @@ projects:
         version: ^2.0.0
       - src: PresentKim/arrayutils/arrayutils
         version: ^4.0.0
-      - src: PresentKim/singleton-trait/singleton-trait
-        version: ^2.0.0
 ...
